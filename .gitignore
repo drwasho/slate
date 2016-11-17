@@ -16,6 +16,10 @@ build/
 .cache
 .vagrant
 .sass-cache
+header
+run.sh
+authy.py
+output.txt
 
 # YARD artifacts
 .yardoc
