@@ -127,16 +127,14 @@ var request = require('request');
 var login = {
     url: 'http://localhost:18469/api/v1/login',
     method: 'POST',
-    form: {username: "username", password: "password"},
-    jar: true
+    form: {username: "username", password: "password"}
 };
 
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
-        console.log(response.headers);
         console.log(response.body);
     }
-}
+};
 
 request(login, callback);
 ```
@@ -202,6 +200,31 @@ print profile.json()
 ```
 
 ```javascript
+var request = require('request');
+
+var login = {
+    url: 'http://localhost:18469/api/v1/login',
+    method: 'POST',
+    form: {username: "username", password: "password"},
+    jar: true
+};
+
+var profile = {
+    url: 'http://localhost:18469/api/v1/profile',
+    method: 'GET'
+}
+
+function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(response.body);
+    }
+}
+
+var request = request.defaults({jar: true});
+
+request(login, function () {
+  request(profile, callback)
+});
 ```
 
 > The above call returns JSON structured like this:
