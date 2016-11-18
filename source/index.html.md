@@ -4,7 +4,7 @@ title: OpenBazaar REST API Reference
 language_tabs:
   - shell
   - python
-  - node
+  - javascript
 
 toc_footers:
   - <a href='https://openbazaar.org'>Download OpenBazaar</a>
@@ -124,18 +124,21 @@ print login.headers
 ```javascript
 var request = require('request');
 
+// Login call
 var login = {
     url: 'http://localhost:18469/api/v1/login',
     method: 'POST',
     form: {username: "username", password: "password"}
 };
 
+// Callback
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
         console.log(response.body);
     }
 };
 
+// Make the call
 request(login, callback);
 ```
 
@@ -202,6 +205,7 @@ print profile.json()
 ```javascript
 var request = require('request');
 
+// Login call
 var login = {
     url: 'http://localhost:18469/api/v1/login',
     method: 'POST',
@@ -209,19 +213,23 @@ var login = {
     jar: true
 };
 
+// Profile call
 var profile = {
     url: 'http://localhost:18469/api/v1/profile',
     method: 'GET'
 }
 
+// Callback
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
         console.log(response.body);
     }
 }
 
+// Save the session cookie
 var request = request.defaults({jar: true});
 
+// Make the call
 request(login, function () {
   request(profile, callback)
 });
@@ -278,6 +286,54 @@ This endpoint retrieves the profile information of the node.
 ```shell
 curl "http://localhost:18469/api/v1/profile?guid=a06aa22a38f0e62221ab74464c311bd88305f88c"
   --cookie header
+```
+
+```python
+import requests
+
+# Open an authenticated session
+s = requests.Session()
+payload = {'username': 'username', 'password': 'password'}
+login = s.post('http://localhost:18469/api/v1/login', data=payload)
+
+# GET /profile
+payload = {'guid':'a06aa22a38f0e62221ab74464c311bd88305f88c'}
+profile = s.get('http://localhost:18469/api/v1/profile', params=payload)
+print profile.json()
+```
+
+```javascript
+var request = require('request');
+
+// Login call
+var login = {
+    url: 'http://localhost:18469/api/v1/login',
+    method: 'POST',
+    form: {username: "username", password: "password"},
+    jar: true
+};
+
+// Profile call
+var profile = {
+    url: 'http://localhost:18469/api/v1/profile',
+    method: 'GET',
+    qs: {guid: "a06aa22a38f0e62221ab74464c311bd88305f88c"}
+}
+
+// Callback
+function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(response.body);
+    }
+}
+
+// Save the session cookie
+var request = request.defaults({jar: true});
+
+// Make the call
+request(login, function () {
+  request(profile, callback)
+});
 ```
 
 > The above call returns JSON structured like this:
