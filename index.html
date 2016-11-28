@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>OpenBazaar REST API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,8 +102,8 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,7 +112,8 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://openbazaar.org'>Download OpenBazaar</a></li>
+            <li><a href='https://github.com/OpenBazaar/OpenBazaar-Server'>Github Repo for OpenBazaar-Server 1.x</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -121,87 +122,366 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the OpenBazaar-Server REST API! </p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>OpenBazaar is a peer-to-peer decentralized marketplace&hellip; a fusion of BitTorrent, eBay, and Bitcoin! OpenBazaar the application is split into two components: the client and server. The client accesses all of the server functionality using the REST and websocket APIs. This documentation covers the server component REST API.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<h2 id="list-of-api-calls">List of API calls</h2>
+
+<h3 id="authentication">Authentication</h3>
+
+<ul>
+<li>[x] POST /login </li>
+</ul>
+
+<h3 id="images">Images</h3>
+
+<ul>
+<li>[ ] GET /get_image<br></li>
+<li>[ ] POST /upload_image<br></li>
+</ul>
+
+<h3 id="profile">Profile</h3>
+
+<ul>
+<li>[x] GET /profile<br></li>
+<li>[ ] POST /profile<br></li>
+<li>[ ] POST /social_accounts<br></li>
+<li>[ ] DELETE /social_accounts<br></li>
+<li>[ ] GET /get_followers<br></li>
+<li>[ ] GET /get_following<br></li>
+<li>[ ] POST /follow<br></li>
+<li>[ ] POST /unfollow<br></li>
+<li>[ ] POST /make_moderator<br></li>
+<li>[ ] POST /unmake_moderator<br></li>
+</ul>
+
+<h3 id="settings">Settings</h3>
+
+<ul>
+<li>[ ] POST /settings<br></li>
+<li>[ ] GET /settings<br></li>
+<li>[ ] GET /shutdown<br></li>
+</ul>
+
+<h3 id="ordering">Ordering</h3>
+
+<ul>
+<li>[ ] GET /get_listings<br></li>
+<li>[ ] GET /contracts<br></li>
+<li>[ ] POST /contracts<br></li>
+<li>[ ] DELETE /contracts<br></li>
+<li>[ ] POST /purchase_contract<br></li>
+<li>[ ] POST /confirm_order<br></li>
+<li>[ ] POST /complete_order</li>
+<li>[ ] GET /order_messages<br></li>
+<li>[ ] GET /get_ratings<br></li>
+<li>[ ] GET /btc_price<br></li>
+<li>[ ] POST /refund<br></li>
+<li>[ ] GET /sales<br></li>
+<li>[ ] GET /get_purchases<br></li>
+<li>[ ] POST /check_for_payment<br></li>
+<li>[ ] GET /get_order<br></li>
+<li>[ ] POST /release_funds<br></li>
+</ul>
+
+<h3 id="network">Network</h3>
+
+<ul>
+<li>[ ] GET /connected_peers<br></li>
+<li>[ ] GET /routing_table<br></li>
+</ul>
+
+<h3 id="notifications">Notifications</h3>
+
+<ul>
+<li>[ ] GET /notifications<br></li>
+<li>[ ] POST /mark_notification_as_read<br></li>
+</ul>
+
+<h3 id="dispute-resolution">Dispute resolution</h3>
+
+<ul>
+<li>[ ] POST /dispute_contract<br></li>
+<li>[ ] POST /close_dispute<br></li>
+<li>[ ] GET /get_cases<br></li>
+</ul>
+
+<h3 id="chat">Chat</h3>
+
+<ul>
+<li>[ ] POST /broadcast<br></li>
+<li>[ ] GET /get_chat_messages<br></li>
+<li>[ ] GET /get_chat_conversations<br></li>
+<li>[ ] DELETE /chat_conversation<br></li>
+<li>[ ] POST /mark_chat_message_as_read<br></li>
+<li>[ ] POST /mark_discussion_as_read<br></li>
+</ul>
 
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authorize API calls, first login to the server:</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<pre class="highlight shell"><code><span class="c"># With shell, login to the server and retrieve the header containing the Twisted session cookie</span>
+curl <span class="s2">"http://localhost:18469/api/v1/login"</span>
+  --data <span class="s2">"username=username&amp;password=password"</span>
+  --dump-header header
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<pre class="highlight python"><code><span class="c"># With requests, login to the server and retrieve the Twisted session cookie</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="p">{</span><span class="s">'username'</span><span class="p">:</span> <span class="s">'username'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">:</span> <span class="s">'password'</span><span class="p">}</span>
+<span class="n">login</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:18469/api/v1/login'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+<span class="c"># Print the response</span>
+<span class="k">print</span> <span class="n">login</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="c"># Print the header containing the Twisted session cookie</span>
+<span class="k">print</span> <span class="n">login</span><span class="o">.</span><span class="n">headers</span>
 </code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+
+<span class="c1">// Login call</span>
+<span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:18469/api/v1/login'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">form</span><span class="p">:</span> <span class="p">{</span><span class="na">username</span><span class="p">:</span> <span class="s2">"username"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Callback</span>
+<span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Make the call</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">login</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>The resulting header file should look something like this:</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+<pre class="highlight shell"><code>HTTP/1.1 200 OK
+Date: Thu, 17 Nov 2016 03:56:27 GMT
+Content-Length: 17
+Content-Type: application/json
+Server: TwistedWeb/16.1.0
+Set-Cookie: <span class="nv">TWISTED_SESSION</span><span class="o">=</span>0df9b71a84cd850b5723476b7aff0475; <span class="nv">Path</span><span class="o">=</span>/
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<pre class="highlight python"><code><span class="c"># Print of the response</span>
+<span class="p">{</span><span class="s">u'success'</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="c"># Print of the header</span>
+<span class="p">{</span><span class="s">'Date'</span><span class="p">:</span> <span class="s">'Thu, 17 Nov 2016 07:04:22 GMT'</span><span class="p">,</span> <span class="s">'Set-Cookie'</span><span class="p">:</span> <span class="s">'TWISTED_SESSION=90bc1399cef451d82e7281d5933378e3; Path=/'</span><span class="p">,</span> <span class="s">'Content-Length'</span><span class="p">:</span> <span class="s">'17'</span><span class="p">,</span> <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span> <span class="s">'Server'</span><span class="p">:</span> <span class="s">'TwistedWeb/16.1.0'</span><span class="p">}</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu, 17 Nov 2016 12:01:00 GMT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"connection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content-length"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TwistedWeb/16.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"set-cookie"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"TWISTED_SESSION=9f0bd1fb63a28df702b7cf2e58d52047; Path=/"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">{</span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>OpenBazaar-Server uses session cookies to make authenticated API calls. To obtain the session cookie, you firstly need to login to the server.</p>
+
+<p><code class="prettyprint">localhost</code> can be replaced with the IP address of wherever the server component is hosted. Make sure that the server is run with <code class="prettyprint">-a 0.0.0.0</code> flag to accept API calls from any location (or replace <code class="prettyprint">0.0.0.0</code> with a specific IP address).</p>
+
+<aside class="notice">
+You must replace <code>username</code> and <code>password</code> with the username and password set in the <code>ob.cfg</code> configuration file in OpenBazaar-Server.
+</aside>
+
+<h1 id="profile">Profile</h1>
+
+<h2 id="get-profile">GET Profile</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:18469/api/v1/profile"</span>
+  --cookie header
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Open an authenticated session</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'username'</span><span class="p">:</span> <span class="s">'username'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">:</span> <span class="s">'password'</span><span class="p">}</span>
+<span class="n">login</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:18469/api/v1/login'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="c"># GET /profile</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'http://localhost:18469/api/v1/profile'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">profile</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+
+<span class="c1">// Login call</span>
+<span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:18469/api/v1/login'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">form</span><span class="p">:</span> <span class="p">{</span><span class="na">username</span><span class="p">:</span> <span class="s2">"username"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">},</span>
+    <span class="na">jar</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="c1">// Profile call</span>
+<span class="kd">var</span> <span class="nx">profile</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:18469/api/v1/profile'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span>
+<span class="p">}</span>
+
+<span class="c1">// Callback</span>
+<span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Save the session cookie</span>
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">({</span><span class="na">jar</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+
+<span class="c1">// Make the call</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">login</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">request</span><span class="p">(</span><span class="nx">profile</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>The above call returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"social_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/cmosthestore"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"proof_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"instagram"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://instagram.com/cmosthestore"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"proof_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"moderation_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"moderator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"nsfw"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"074265875f569b33b68dbee6834d1c4fd2438fa0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"background_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">3092024</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">5591909</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNITED_STATES"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"short_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simply the best!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">7433862</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cmos.the.store@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"handle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@cmosthestore"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"text_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">16777215</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1470754647</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"public_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6a2f42013d03e586ea909743053ca06d6b861d34de6797b3fef45691f973444a"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"about"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&amp;lt;h1&amp;gt;Cmos the Store&amp;lt;/h1&amp;gt;\n&lt;h2&gt;About Us&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Cmos the Store &lt;/b&gt;has a mission to sell you the cheapest 'most awesome' products we can find. We guarantee you will not find better prices anywhere else for the items we sell.&lt;/p&gt;&lt;p&gt;OpenBazaar is about the freedom of trade and no fees. Our mission is to also associate OpenBazaar with the place you go to get high quality goods at a cheap price you can't find anywhere else.&lt;/p&gt;&lt;p&gt;All of our transactions are 'moderator-preferred'. We also commit to answer your questions in chat within 12 hours from Monday to Friday, and within 24 hours on the weekend.&lt;/p&gt;&lt;h3&gt;&lt;b&gt;Cat tax&lt;/b&gt;&lt;/h3&gt;&lt;p&gt;&lt;img src=\"http://www.catgifpage.com/gifs/310.gif\" width=\"400px\"&gt;&lt;/p&gt;&lt;h3&gt;Cena Toll&lt;/h3&gt;&lt;p&gt;&lt;img src=\"https://media.giphy.com/media/Vzku9jyuef09G/giphy.gif\" width=\"400px\"&gt;&lt;/p&gt;\n&lt;h2&gt;Shop At Our Sister Stores!&lt;/h2&gt;\n&lt;p&gt;&lt;img src=\"http://i.imgur.com/OLdavrh.png\" width=\"400px\"&gt;&lt;/p&gt;\n&lt;p&gt;&lt;b&gt;Highgarden&lt;/b&gt; - The largest collection of women's clothing on OpenBazaar and the lowest prices. ob://b3df09bd79a27f54cbfd007e6237c41884377612/store&lt;/p&gt;\n&lt;p&gt;&lt;img src=\"http://i.imgur.com/dSyW4y4.jpg\" width=\"400px\"&gt;&lt;/p&gt;\n&lt;p&gt;&lt;b&gt;The Grid&lt;/b&gt; - Consumer electronics, accessories, and parts. ob://1b0a60112b919c141d0b89ef4c855432ec218251/store&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cmos the Store"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"header_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4efb6e41a1a79f6cb1200b1bc177089cdcec5557"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"pgp_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d1281c49fe1fedfd37beef3454bde30b1aab414"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the profile information of the node.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">GET http://localhost:18469/api/v1/profile</code></p>
+
+<h2 id="get-profile-of-a-target-node">GET Profile of a target node</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:18469/api/v1/profile?guid=a06aa22a38f0e62221ab74464c311bd88305f88c"</span>
+  --cookie header
+</code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Open an authenticated session</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'username'</span><span class="p">:</span> <span class="s">'username'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">:</span> <span class="s">'password'</span><span class="p">}</span>
+<span class="n">login</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://localhost:18469/api/v1/login'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="c"># GET /profile</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'guid'</span><span class="p">:</span><span class="s">'a06aa22a38f0e62221ab74464c311bd88305f88c'</span><span class="p">}</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'http://localhost:18469/api/v1/profile'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">profile</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+
+<span class="c1">// Login call</span>
+<span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:18469/api/v1/login'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+    <span class="na">form</span><span class="p">:</span> <span class="p">{</span><span class="na">username</span><span class="p">:</span> <span class="s2">"username"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">},</span>
+    <span class="na">jar</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="c1">// Profile call</span>
+<span class="kd">var</span> <span class="nx">profile</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:18469/api/v1/profile'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+    <span class="na">qs</span><span class="p">:</span> <span class="p">{</span><span class="na">guid</span><span class="p">:</span> <span class="s2">"a06aa22a38f0e62221ab74464c311bd88305f88c"</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Callback</span>
+<span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Save the session cookie</span>
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">defaults</span><span class="p">({</span><span class="na">jar</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+
+<span class="c1">// Make the call</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">login</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">request</span><span class="p">(</span><span class="nx">profile</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>The above call returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"social_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@openbazaar"</span><span class="p">,</span><span class="w"> 
+                </span><span class="nt">"proof_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+            </span><span class="nt">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenBazaarProject"</span><span class="p">,</span><span class="w"> 
+                </span><span class="nt">"proof_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="nt">"moderation_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"moderator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"nsfw"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a06aa22a38f0e62221ab74464c311bd88305f88c"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"background_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">1846074</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">3362410</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNITED_STATES"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"short_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trade free."</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">4285834</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"project@openbazaar.org"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://openbazaar.org/"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"handle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@openbazaar"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"text_color"</span><span class="p">:</span><span class="w"> </span><span class="mi">16777215</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"public_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42741d5d3a87140c4b850078ec2b625504ee3a711657e42531f5978e4fcf53fd"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"about"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h2&gt;Trade free.&lt;/h2&gt;&lt;p&gt;OpenBazaar is a decentralized network for trade with no fees and no restrictions.&lt;/p&gt;&lt;p&gt;Trade happens directly between peers.&lt;i&gt; No middleman&lt;/i&gt;.&lt;/p&gt;&lt;p&gt;If you want to show support for the core developers who built OpenBazaar, check out our products for sale in the store tab.&lt;/p&gt;"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenBazaar"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"header_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f858909c8304c03d00dd27fe525321cff03c52a"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"pgp_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"avatar_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55456e9efbafb5139977d1f86313eaac3293a88b"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the profile information of a target node on the network.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:18469/api/v1/profile?guid=&lt;guid&gt;</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -213,69 +493,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>guid</td>
+<td><em>blank</em></td>
+<td>The guid of the target node.</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+If the <code>guid</code> parameter isn&rsquo;t included in the call, the server will return its own profile infomration!
 </aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
 
           <h1 id="errors">Errors</h1>
 
@@ -290,48 +516,12 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>NOT_FOUND</td>
+<td>Bad Request &ndash; What you are asking for doesn&rsquo;t exist&hellip; move along.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Authorization error &ndash; The API call has failed authentication.</td>
 </tr>
 </tbody></table>
 
@@ -339,8 +529,8 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
